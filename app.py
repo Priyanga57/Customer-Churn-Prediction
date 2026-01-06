@@ -13,7 +13,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("Customer Churn Prediction")
+st.title("📊 Customer Churn Prediction")
 st.write("Predict whether a customer is likely to **Churn** or **Stay**")
 
 st.divider()
@@ -28,11 +28,11 @@ SCALER_PATH = "saved model/scaler.pkl"
 # Safety Checks (PREVENT CRASH)
 # -------------------------------------------------
 if not os.path.exists(MODEL_PATH):
-    st.error(f"Model file not found at: {MODEL_PATH}")
+    st.error(f"❌ Model file not found at: {MODEL_PATH}")
     st.stop()
 
 if not os.path.exists(SCALER_PATH):
-    st.error(f"Scaler file not found at: {SCALER_PATH}")
+    st.error(f"❌ Scaler file not found at: {SCALER_PATH}")
     st.stop()
 
 # -------------------------------------------------
@@ -41,7 +41,7 @@ if not os.path.exists(SCALER_PATH):
 model = load_model(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 
-st.success("Model and scaler loaded successfully")
+st.success("✅ Model and scaler loaded successfully")
 
 st.divider()
 
@@ -91,16 +91,16 @@ input_scaled = scaler.transform(input_df)
 # -------------------------------------------------
 # Prediction
 # -------------------------------------------------
-if st.button("Predict Churn"):
+if st.button("🔍 Predict Churn"):
     probability = model.predict(input_scaled)[0][0]
 
-    st.subheader("Prediction Result")
+    st.subheader("📈 Prediction Result")
     st.write(f"**Churn Probability:** `{probability:.2f}`")
 
     if probability > 0.5:
-        st.error("Customer is likely to **CHURN**")
+        st.error("❌ Customer is likely to **CHURN**")
     else:
-        st.success("Customer is likely to **STAY**")
+        st.success("✅ Customer is likely to **STAY**")
 
 st.divider()
 st.caption("ANN Model | Streamlit Cloud Deployment | Customer Churn Prediction")
