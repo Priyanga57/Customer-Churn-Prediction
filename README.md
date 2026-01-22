@@ -125,7 +125,7 @@ Final dataset prepared for deep learning models
 
 
 
-# *Models Implemented* #
+# **Models Implemented** #
 
 
 
